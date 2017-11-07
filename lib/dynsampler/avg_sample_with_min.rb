@@ -76,8 +76,9 @@ module DynSampler
         tmp_counts.each do |k,_|
           new_saved_sample_rates[k] = 1
         end
-        # TODO locking here?
-        @saved_sample_rates = new_saved_sample_rates
+        @lock.synchronize {
+          @saved_sample_rates = new_saved_sample_rates
+        }
         return
       end
 

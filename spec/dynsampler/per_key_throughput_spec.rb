@@ -2,7 +2,9 @@ require 'dynsampler/per_key_throughput'
 
 RSpec.describe DynSampler::PerKeyThroughput do
   it "updates maps" do
-    sampler = DynSampler::PerKeyThroughput.new(30, 5)
+    sampler = DynSampler::PerKeyThroughput.new(
+      per_key_throughput_per_sec: 5,
+    )
 
     tests = [
       [

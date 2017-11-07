@@ -1,8 +1,12 @@
 module DynSampler
   class Static
-    def initialize(rates, default = 1)
-      @rates = rates
-      @default = default
+    def initialize(options = {})
+      @rates = options.delete(:rates)
+      @default = options.delete(:default) || 1
+
+      unless @rates
+        raise ArgumentError.new(':rates option was not provided')
+      end
     end
 
     def start

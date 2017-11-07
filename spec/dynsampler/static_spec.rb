@@ -2,10 +2,13 @@ require 'dynsampler/static'
 
 RSpec.describe DynSampler::Static do
   it "samples at a static rate" do
-    sampler = DynSampler::Static.new({
-      one: 5,
-      two: 10,
-    }, 3)
+    sampler = DynSampler::Static.new(
+      rates: {
+        one: 5,
+        two: 10,
+      },
+      default: 3,
+    )
 
     expect(sampler.sample_rate(:one)).to eq(5)
     expect(sampler.sample_rate(:two)).to eq(10)

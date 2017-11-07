@@ -17,8 +17,8 @@ module DynSampler
   class OnlyOnce
     attr_accessor :seen
 
-    def initialize(clear_frequency_sec = 30)
-      @clear_frequency_sec = clear_frequency_sec
+    def initialize(options = {})
+      @clear_frequency_sec = options.delete(:clear_frequency_sec) || 30
       @seen = {}
       @lock = Mutex.new
     end

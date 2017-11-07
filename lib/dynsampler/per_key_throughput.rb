@@ -10,9 +10,9 @@ module DynSampler
   class PerKeyThroughput
     attr_accessor :saved_sample_rates, :current_counts
 
-    def initialize(clear_frequency_sec = 30, per_key_throughput_per_sec = 10)
-      @clear_frequency_sec = clear_frequency_sec
-      @per_key_throughput_per_sec = per_key_throughput_per_sec
+    def initialize(options = {})
+      @clear_frequency_sec = options.delete(:clear_frequency_sec) || 30
+      @per_key_throughput_per_sec = options.delete(:per_key_throughput_per_sec) || 10
 
       @saved_sample_rates = {}
       @current_counts = {}

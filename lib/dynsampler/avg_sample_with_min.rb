@@ -15,10 +15,10 @@ module DynSampler
   class AvgSampleWithMin
     attr_accessor :saved_sample_rates, :current_counts, :have_data
 
-    def initialize(clear_frequency_sec = 30, goal_sample_rate = 10, min_events_per_sec = 50)
-      @clear_frequency_sec = clear_frequency_sec
-      @goal_sample_rate = goal_sample_rate
-      @min_events_per_sec = min_events_per_sec
+    def initialize(options = {})
+      @clear_frequency_sec = options.delete(:clear_frequency_sec) || 30
+      @goal_sample_rate = options.delete(:goal_sample_rate) || 10
+      @min_events_per_sec = options.delete(:min_events_per_sec) || 50
 
       @saved_sample_rates = {}
       @current_counts = {}

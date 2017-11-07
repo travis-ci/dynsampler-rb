@@ -2,7 +2,9 @@ require 'dynsampler/avg_sample_with_min'
 
 RSpec.describe DynSampler::AvgSampleWithMin do
   it "updates maps" do
-    sampler = DynSampler::AvgSampleWithMin.new(30, 20)
+    sampler = DynSampler::AvgSampleWithMin.new(
+      goal_sample_rate: 20,
+    )
 
     tests = [
       [
@@ -144,7 +146,7 @@ RSpec.describe DynSampler::AvgSampleWithMin do
   end
 
   it "starts up" do
-    sampler = DynSampler::AvgSampleWithMin.new(30, 10)
+    sampler = DynSampler::AvgSampleWithMin.new
 
     rate = sampler.sample_rate(:key)
     expect(rate).to eq(10)

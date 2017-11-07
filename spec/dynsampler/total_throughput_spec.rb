@@ -2,7 +2,9 @@ require 'dynsampler/total_throughput'
 
 RSpec.describe DynSampler::TotalThroughput do
   it "updates the maps" do
-    sampler = DynSampler::TotalThroughput.new(30, 20)
+    sampler = DynSampler::TotalThroughput.new(
+      goal_throughput_per_sec: 20,
+    )
 
     tests = [
       [

@@ -13,9 +13,9 @@ module DynSampler
   class AvgSampleRate
     attr_accessor :saved_sample_rates, :current_counts, :have_data
 
-    def initialize(clear_frequency_sec = 30, goal_sample_rate = 10)
-      @clear_frequency_sec = clear_frequency_sec
-      @goal_sample_rate = goal_sample_rate
+    def initialize(options = {})
+      @clear_frequency_sec = options.delete(:clear_frequency_sec) || 30
+      @goal_sample_rate = options.delete(:goal_sample_rate) || 10
 
       @saved_sample_rates = {}
       @current_counts = {}

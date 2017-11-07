@@ -16,9 +16,9 @@ module DynSampler
   class TotalThroughput
     attr_accessor :current_counts, :saved_sample_rates
 
-    def initialize(clear_frequency_sec = 30, goal_throughput_per_sec = 100)
-      @clear_frequency_sec = clear_frequency_sec
-      @goal_throughput_per_sec = goal_throughput_per_sec
+    def initialize(options = {})
+      @clear_frequency_sec = options.delete(:clear_frequency_sec) || 30
+      @goal_throughput_per_sec = options.delete(:goal_throughput_per_sec) || 100
 
       @saved_sample_rates = {}
       @current_counts = {}

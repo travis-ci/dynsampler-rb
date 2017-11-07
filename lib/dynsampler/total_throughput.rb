@@ -62,11 +62,10 @@ module DynSampler
       total_goal_throughput = @goal_throughput_per_sec * @clear_frequency_sec
       throughput_per_key = [1, total_goal_throughput.to_f/num_keys.to_f].max.to_i
 
-      new_saved_sample_rates = {}
-      tmp_counts.each do |k,v|
+      new_saved_sample_rates = tmp_counts.map {|k,v|
         rate = [1, v.to_f/throughput_per_key.to_f].max.to_i
-        new_saved_sample_rates[k] = rate
-      end
+        [k, rate]
+      }.to_h
 
       @lock.synchronize {
         @saved_sample_rates = new_saved_sample_rates

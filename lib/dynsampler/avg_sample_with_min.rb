@@ -66,26 +66,18 @@ module DynSampler
         return
       end
 
-      sum_events = 0
-      tmp_counts.each do |k,v|
-        sum_events += v
-      end
+      sum_events = tmp_counts.values.reduce(0, :+)
       goal_count = sum_events.to_f/@goal_sample_rate.to_f
 
       if sum_events < @min_events_per_sec * @clear_frequency_sec
-        tmp_counts.each do |k,_|
-          new_saved_sample_rates[k] = 1
-        end
+        new_saved_sample_rates = tmp_counts.keys.map {|k| [k, 1]}.to_h
         @lock.synchronize {
           @saved_sample_rates = new_saved_sample_rates
         }
         return
       end
 
-      log_sum = 0.0
-      tmp_counts.each do |k,v|
-        log_sum += Math.log10(v.to_f)
-      end
+      log_sum = tmp_counts.values.map {|v| Math.log10(v.to_f)}.reduce(0.0, :+)
       goal_ratio = goal_count/log_sum
 
       keys = tmp_counts.keys.sort

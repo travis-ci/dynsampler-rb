@@ -61,16 +61,10 @@ module DynSampler
         return
       end
 
-      sum_events = 0
-      tmp_counts.each do |k,v|
-        sum_events += v
-      end
+      sum_events = tmp_counts.values.reduce(0, :+)
       goal_count = sum_events.to_f/@goal_sample_rate.to_f
 
-      log_sum = 0.0
-      tmp_counts.each do |k,v|
-        log_sum += Math.log10(v.to_f)
-      end
+      log_sum = tmp_counts.values.map {|v| Math.log10(v.to_f)}.reduce(0.0, :+)
       goal_ratio = goal_count/log_sum
 
       keys = tmp_counts.keys.sort

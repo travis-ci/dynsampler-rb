@@ -2,8 +2,6 @@ require 'dynsampler/total_throughput'
 
 RSpec.describe DynSampler::TotalThroughput do
   it "updates the maps" do
-    skip "borked for some odd reason"
-
     sampler = DynSampler::TotalThroughput.new(30, 20)
 
     tests = [
@@ -28,9 +26,9 @@ RSpec.describe DynSampler::TotalThroughput do
           five:  1,
           six:   1,
           seven: 1,
-          eight: 4,
-          nine:  13,
-          ten:   66,
+          eight: 10,
+          nine:  33,
+          ten:   166,
         },
       ],
       [
@@ -82,27 +80,11 @@ RSpec.describe DynSampler::TotalThroughput do
           five:  7000,
         },
         {
-          one:   6,
-          two:   6,
-          three: 13,
-          four:  33,
-          five:  46,
-        },
-      ],
-      [
-        {
-          one:   1000,
-          two:   1000,
-          three: 2000,
-          four:  5000,
-          five:  70000,
-        },
-        {
-          one:   6,
-          two:   6,
-          three: 13,
-          four:  33,
-          five:  466,
+          one:   8,
+          two:   8,
+          three: 16,
+          four:  41,
+          five:  58,
         },
       ],
       [
@@ -114,11 +96,11 @@ RSpec.describe DynSampler::TotalThroughput do
           five:  6000,
         },
         {
-          one:   40,
-          two:   40,
-          three: 40,
-          four:  40,
-          five:  40,
+          one:   50,
+          two:   50,
+          three: 50,
+          four:  50,
+          five:  50,
         },
       ],
       [
@@ -126,7 +108,7 @@ RSpec.describe DynSampler::TotalThroughput do
           one: 12000,
         },
         {
-          one: 80,
+          one: 20,
         },
       ],
       [

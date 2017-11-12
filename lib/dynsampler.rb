@@ -1,5 +1,5 @@
 require 'dynsampler/avg_sample_rate'
-require 'dynsampler/avg_sample_rate_with_min'
+require 'dynsampler/avg_sample_with_min'
 require 'dynsampler/only_once'
 require 'dynsampler/per_key_throughput'
 require 'dynsampler/static'
